@@ -11,23 +11,42 @@ class App extends Component {
     ],
   };
 
-  switchNameHander = () => {
-    // console.log("Was cliked!");
+  switchNameHander = (newName) => {
     this.setState({
       persons: [
-        { name: "Bibica", age: 26 },
+        { name: newName, age: 26 },
         { name: "Jhoninha", age: 27 },
         { name: "Manoel", age: 5 },
       ],
     });
   };
 
+  nameChangeHandler = (event) => {
+    this.setState({
+      persons: [
+        { name: "Gabriela", age: 26 },
+        { name: event.target.value, age: 27 },
+        { name: "Manoel", age: 5 },
+      ],
+    });
+  };
+
   render() {
+    const style = {
+      backgroundColor: "white",
+      font: "inherit",
+      border: "1px solid blue",
+      padding: "8px",
+      cursor: "pointer"
+    };
+
     return (
       <div className="App">
         <header className="App-header">
           <h1>Hi, I'm a react project</h1>
-          <button onClick={this.switchNameHander}>Switch Name</button>
+          <button style={style} onClick={() => this.switchNameHander("Bibica")}>
+            Switch Name
+          </button>
           <Person
             name={this.state.persons[0].name}
             age={this.state.persons[0].age}
@@ -35,6 +54,8 @@ class App extends Component {
           <Person
             name={this.state.persons[1].name}
             age={this.state.persons[1].age}
+            click={this.switchNameHander.bind(this, "Gabi")} //reference to click property
+            changed={this.nameChangeHandler}
           >
             {" "}
             My hobbies are: Racing
