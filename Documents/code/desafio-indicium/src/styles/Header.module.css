@@ -1,0 +1,6 @@
+.header {
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: aqua;
+  position: fixed;
+}
